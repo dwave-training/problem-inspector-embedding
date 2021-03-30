@@ -47,18 +47,26 @@ for i, j in G.edges:
 
 # ------- Run our QUBO on the QPU -------
 # Set up QPU parameters
-chainstrength = 8
+chainstrength = 0.1
 numruns = 10
 
 # Run the QUBO on the solver from your config file
-QPU = DWaveSampler(solver={'topology__type__eq': 'pegasus'})
+QPU = DWaveSampler(solver={'topology__type__eq': 'chimera'})
 embedding = find_embedding(Q, QPU.edgelist)
+
+print("\nEmbedding found:\n", embedding)
+
 sampler = FixedEmbeddingComposite(QPU, embedding)
 response = sampler.sample_qubo(Q,
+                               chain_strength=chainstrength,
                                num_reads=numruns,
                                label='Exercise 2')
 
+print("\nSampleset:")
+print(response)
+
 # ------- Print results to user -------
+print("\nSolutions:")
 print('-' * 60)
 print('{:>15s}{:>15s}{:^15s}{:^15s}'.format('Set 0','Set 1','Energy','Cut Size'))
 print('-' * 60)
@@ -66,29 +74,3 @@ for sample, E in response.data(fields=['sample','energy']):
     S0 = [k for k,v in sample.items() if v == 0]
     S1 = [k for k,v in sample.items() if v == 1]
     print('{:>15s}{:>15s}{:^15s}{:^15s}'.format(str(S0),str(S1),str(E),str(int(-1*E))))
-
-# ------- Display results to user -------
-# Grab best result
-# Note: "best" result is the result with the lowest energy
-# Note2: the look up table (lut) is a dictionary, where the key is the node index
-#   and the value is the set label. For example, lut[5] = 1, indicates that
-#   node 5 is in set 1 (S1).
-lut = response.first.sample
-
-# Interpret best result in terms of nodes and edges
-S0 = [node for node in G.nodes if not lut[node]]
-S1 = [node for node in G.nodes if lut[node]]
-cut_edges = [(u, v) for u, v in G.edges if lut[u]!=lut[v]]
-uncut_edges = [(u, v) for u, v in G.edges if lut[u]==lut[v]]
-
-# Display best result
-pos = nx.spring_layout(G)
-nx.draw_networkx_nodes(G, pos, nodelist=S0, node_color='r')
-nx.draw_networkx_nodes(G, pos, nodelist=S1, node_color='c')
-nx.draw_networkx_edges(G, pos, edgelist=cut_edges, style='dashdot', alpha=0.5, width=3)
-nx.draw_networkx_edges(G, pos, edgelist=uncut_edges, style='solid', width=3)
-nx.draw_networkx_labels(G, pos)
-
-filename = "maxcut_plot.png"
-plt.savefig(filename, bbox_inches='tight')
-print("\nYour plot is saved to {}".format(filename))
