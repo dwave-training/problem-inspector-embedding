@@ -1,6 +1,6 @@
 # Explore Embeddings with the Problem Inspector
 
-Explore different embeddings using the Problem Inspector.
+Explore different embedding methods and chain strength using the Problem Inspector.
 
 ## Exercise 1
 
