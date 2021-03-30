@@ -52,7 +52,7 @@ numruns = 10
 
 # Run the QUBO on the solver from your config file
 QPU = DWaveSampler(solver={'topology__type__eq': 'pegasus'})
-embedding = find_embedding(G, QPU.edgelist)
+embedding = find_embedding(Q, QPU.edgelist)
 sampler = FixedEmbeddingComposite(QPU, embedding)
 response = sampler.sample_qubo(Q,
                                num_reads=numruns,
