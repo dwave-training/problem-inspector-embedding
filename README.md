@@ -13,3 +13,9 @@ When your program successfully opens the problem inspector, answer the assignmen
 
 ## Exercise 2
 
+Run the second program, `exercise_2.py`. Add in the problem inspector with the following steps.
+
+ 1. Import the package that contains the problem inspector.
+ 2. Add the command to open the problem inspector after the QUBO has been sampled.
+
+When your program successfully opens the problem inspector, answer the assignment questions in the virtual classroom.
