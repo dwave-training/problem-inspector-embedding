@@ -47,8 +47,8 @@ for i, j in G.edges:
 
 # ------- Run our QUBO on the QPU -------
 # Set up QPU parameters
-chainstrength = 0.1
-numruns = 10
+chain_strength = 0.1
+num_reads = 10
 
 # Run the QUBO on the solver from your config file
 QPU = DWaveSampler(solver={'topology__type__eq': 'chimera'})
@@ -58,8 +58,8 @@ print("\nEmbedding found:\n", embedding)
 
 sampler = FixedEmbeddingComposite(QPU, embedding)
 response = sampler.sample_qubo(Q,
-                               chain_strength=chainstrength,
-                               num_reads=numruns,
+                               chain_strength=chain_strength,
+                               num_reads=num_reads,
                                label='Exercise 2')
 
 print("\nSampleset:")
