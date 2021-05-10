@@ -54,7 +54,7 @@ sampler = EmbeddingComposite(DWaveSampler(solver={'topology__type__eq': 'pegasus
 response = sampler.sample_qubo(Q,
                                chain_strength=chain_strength,
                                num_reads=num_reads,
-                               label='Exercise 1')
+                               label='Training - PS-Embedding')
 
 print("\nSampleset:")
 print(response)
