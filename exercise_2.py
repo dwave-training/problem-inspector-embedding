@@ -60,7 +60,7 @@ sampler = FixedEmbeddingComposite(QPU, embedding)
 response = sampler.sample_qubo(Q,
                                chain_strength=chain_strength,
                                num_reads=num_reads,
-                               label='Exercise 2')
+                               label='Training - PS-Embedding')
 
 print("\nSampleset:")
 print(response)
