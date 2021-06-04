@@ -23,3 +23,7 @@ Add in the problem inspector with the following steps.
  2. Add the command to open the problem inspector after the QUBO has been sampled.
 
 When your program successfully opens the problem inspector, answer the assignment questions in the virtual classroom.
+
+## License
+
+Released under the Apache License 2.0. See [LICENSE](LICENSE) file.
