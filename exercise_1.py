@@ -51,20 +51,23 @@ num_reads = 10
 
 # Run the QUBO on the solver from your config file
 sampler = EmbeddingComposite(DWaveSampler(solver={'topology__type__eq': 'pegasus'}))
-response = sampler.sample_qubo(Q,
+sampleset = sampler.sample_qubo(Q,
                                chain_strength=chain_strength,
                                num_reads=num_reads,
-                               label='Training - PS-Embedding')
+                               label='Training - Embedding',
+                               return_embedding=True)
+
+print("\nEmbedding found:\n", sampleset.info['embedding_context']['embedding'])
 
 print("\nSampleset:")
-print(response)
+print(sampleset)
 
 # ------- Print results to user -------
 print("\nSolutions:")
 print('-' * 60)
 print('{:>15s}{:>15s}{:^15s}{:^15s}'.format('Set 0','Set 1','Energy','Cut Size'))
 print('-' * 60)
-for sample, E in response.data(fields=['sample','energy']):
+for sample, E in sampleset.data(fields=['sample','energy']):
     S0 = [k for k,v in sample.items() if v == 0]
     S1 = [k for k,v in sample.items() if v == 1]
     print('{:>15s}{:>15s}{:^15s}{:^15s}'.format(str(S0),str(S1),str(E),str(int(-1*E))))
