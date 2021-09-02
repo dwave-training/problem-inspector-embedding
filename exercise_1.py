@@ -49,7 +49,7 @@ for i, j in G.edges:
 chain_strength = 0.1
 num_reads = 10
 
-# Run the QUBO on the solver from your config file
+# Run the QUBO on a solver with the specified topology
 sampler = EmbeddingComposite(DWaveSampler(solver={'topology__type__eq': 'pegasus'}))
 sampleset = sampler.sample_qubo(Q,
                                chain_strength=chain_strength,
