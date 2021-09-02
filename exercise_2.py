@@ -50,7 +50,7 @@ for i, j in G.edges:
 chain_strength = 0.1
 num_reads = 10
 
-# Run the QUBO on the solver from your config file
+# Run the QUBO on a solver with the specified topology
 QPU = DWaveSampler(solver={'topology__type__eq': 'chimera'})
 embedding = find_embedding(Q, QPU.edgelist)
 
