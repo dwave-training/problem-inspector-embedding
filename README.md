@@ -1,3 +1,7 @@
+[![Open in Leap IDE](	
+	https://cdn-assets.cloud.dwavesys.com/shared/latest/badges/leapide.svg)](
+	https://ide.dwavesys.io/#https://github.com/dwave-training/problem-inspector-embedding)
+
 # Explore Embeddings with the Problem Inspector
 
 Explore different embedding methods and chain strength using the Problem Inspector.
