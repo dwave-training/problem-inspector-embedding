@@ -32,7 +32,7 @@ except ImportError:
 G = nx.Graph()
 
 # Add edges to the graph (also adds nodes)
-G.add_edges_from([(1,2),(1,3),(2,4),(3,4),(3,5),(4,5)])
+G.add_edges_from([(1,2),(1,3),(1,4),(1,5),(2,3),(2,4),(2,5),(3,4),(3,5),(4,5)])
 
 # ------- Set up our QUBO dictionary -------
 
@@ -47,11 +47,11 @@ for i, j in G.edges:
 
 # ------- Run our QUBO on the QPU -------
 # Set up QPU parameters
-chain_strength = 0.1
+chain_strength = 0.5
 num_reads = 10
 
 # Run the QUBO on a solver with the specified topology
-QPU = DWaveSampler(solver={'topology__type__eq': 'chimera'})
+QPU = DWaveSampler(solver={'topology__type__eq': 'pegasus'})
 embedding = find_embedding(Q, QPU.edgelist)
 
 print("\nEmbedding found:\n", embedding)
