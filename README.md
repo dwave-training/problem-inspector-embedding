@@ -1,4 +1,7 @@
-
+[![Open in GitHub Codespaces](
+  https://img.shields.io/badge/Open%20in%20GitHub%20Codespaces-333?logo=github)](
+  https://codespaces.new/dwave-training/problem-inspector-embedding?quickstart=1)
+  
 # Explore Embeddings with the Problem Inspector
 
 Explore different embedding methods and chain strength using the Problem Inspector.
